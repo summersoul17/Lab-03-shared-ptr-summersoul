@@ -1,3 +1,5 @@
-// Copyright 2020 Your Name <your_email>
+// Copyright 2021 Summersoul17 <17summersoul17@gmail.com>
 
-#include <header.hpp>
+int main(){
+
+}
