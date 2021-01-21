@@ -16,7 +16,6 @@ class SharedPtr {
 public:
     SharedPtr()
         :pointer(nullptr), counter(nullptr){};
-
     explicit SharedPtr(T* ptr)
         :pointer(ptr){
         if(ptr == nullptr)
@@ -26,7 +25,6 @@ public:
             *counter = 1;
         }
     };
-
     SharedPtr(const SharedPtr& r){
         if(r.pointer){
             pointer = r.pointer;
@@ -38,7 +36,6 @@ public:
                 counter = nullptr;
         }
     };
-
     SharedPtr(SharedPtr&& r){
         pointer = nullptr;
         counter = nullptr;
@@ -47,7 +44,6 @@ public:
             std::swap(counter, r.counter);
         }
     };
-
     ~SharedPtr(){
         if(counter){
             if(!--*counter){
@@ -56,8 +52,7 @@ public:
             }
         }
     };
-
-    auto operator=(const SharedPtr& r) -> SharedPtr&{
+    SharedPtr& operator=(const SharedPtr& r){//PROVERKA NA SAMOPRISVAIVANIE
         if(this != &r){
             pointer = r.pointer;
             counter = r.counter;
@@ -69,26 +64,23 @@ public:
         }
         return *this;
     };
-    auto operator=(SharedPtr&& r) -> SharedPtr&{
+    SharedPtr& operator=(SharedPtr&& r){
         if(this != &r){
             std::swap(pointer, r.pointer);
             std::swap(counter, r.counter);
             }
         return *this;
     };
-
-    // проверяет, указывает ли указатель на объект
     operator bool() const{
         return(pointer)?true:false;
     };
-    auto operator*() const -> T&{
+    T& operator*() const{
         return *pointer;
     };
-    auto operator->() const -> T*{
+    T* operator->() const{
         return pointer;
     };
-
-    auto get() -> T*{
+    T* get(){
         return pointer;
     };
     void reset() {
@@ -120,13 +112,11 @@ public:
         std::swap(pointer, r.pointer);
         std::swap(counter, r.counter);
     };
-    // возвращает количество объектов SharedPtr, которые ссылаются на тот же управляемый объект
-    auto use_count() const -> size_t{
+    size_t use_count() const{
         return(counter)?((size_t)*counter):(0);
     };
 private:
     T* pointer;
     atomic_uint* counter;
 };
-
 #endif // INCLUDE_SHARED_PTR_HPP_

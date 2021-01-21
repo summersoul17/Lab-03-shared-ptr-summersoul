@@ -62,3 +62,19 @@ TEST(SharedPtr, SwapTest){
     EXPECT_EQ(*a,8223);
     EXPECT_EQ(*b, 3228);
 }
+TEST(SharedPtr, IsMoveTest){
+    EXPECT_EQ(std::is_move_assignable<SharedPtr<int>>::value, true);
+    EXPECT_EQ(std::is_move_constructible<SharedPtr<int>>::value, true);
+    EXPECT_EQ(std::is_move_assignable<SharedPtr<double>>::value, true);
+    EXPECT_EQ(std::is_move_constructible<SharedPtr<double>>::value, true);
+    EXPECT_EQ(std::is_move_assignable<SharedPtr<TestClass>>::value, true);
+    EXPECT_EQ(std::is_move_constructible<SharedPtr<TestClass>>::value, true);
+}
+TEST(SharedPtr, IsCopyTest){
+    EXPECT_EQ(std::is_copy_assignable<SharedPtr<int>>::value, true);
+    EXPECT_EQ(std::is_copy_constructible<SharedPtr<int>>::value, true);
+    EXPECT_EQ(std::is_copy_assignable<SharedPtr<double>>::value, true);
+    EXPECT_EQ(std::is_copy_constructible<SharedPtr<double>>::value, true);
+    EXPECT_EQ(std::is_copy_assignable<SharedPtr<TestClass>>::value, true);
+    EXPECT_EQ(std::is_copy_constructible<SharedPtr<TestClass>>::value, true);
+}
