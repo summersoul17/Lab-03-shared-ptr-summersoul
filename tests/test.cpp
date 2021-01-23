@@ -34,7 +34,7 @@ TEST(SharedPtr, MoveTest){
 TEST(SharedPtr, BoolTest){
     SharedPtr<int> a(new int(3228));
     SharedPtr<int> b = a;
-    bool result = (bool)b;
+    bool result = b;
     EXPECT_TRUE(result);
 }
 TEST(SharedPtr, ArrowTest){

@@ -52,7 +52,7 @@ public:
             }
         }
     };
-    SharedPtr& operator=(const SharedPtr& r){//PROVERKA NA SAMOPRISVAIVANIE
+    SharedPtr& operator=(const SharedPtr& r){
         if(this != &r){
             pointer = r.pointer;
             counter = r.counter;
