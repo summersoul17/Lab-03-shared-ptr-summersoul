@@ -30,7 +30,7 @@ public:
             pointer = r.pointer;
             counter = r.counter;
             if(pointer){
-                *counter = *counter+1;
+                *counter += 1;
             }
             else
                 counter = nullptr;
@@ -57,7 +57,7 @@ public:
             pointer = r.pointer;
             counter = r.counter;
             if(pointer){
-                *counter = *counter+1;
+                *counter += 1;
             }
             else
                 counter = nullptr;
@@ -88,7 +88,7 @@ public:
             delete pointer;
             delete counter;
         }else{
-            *counter = *counter-1;
+            *counter -= 1;
         }
         pointer=nullptr;
         counter=nullptr;
@@ -98,7 +98,7 @@ public:
             delete pointer;
             delete counter;
         }else {
-            *counter = *counter - 1;
+            *counter -= 1;
         }
         pointer = ptr;
         if(ptr == nullptr){
